@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Form</title>
+    <link rel="stylesheet" href="week2.css">
+  </head>
+  </head>
+  <body>
+    <h1>Form</h1>
+    <form id="myForm" action="" method="post">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required><br>
+
+      <label for="email">Email address:</label>
+      <input type="email" id="email" name="email" required><br>
+
+      <label for="phone">Phone number:</label>
+      <input type="tel" id="phone" name="phone" required><br>
+
+      <label for="gender">Gender:</label>
+      <select id="gender" name="gender" required>
+        <option value="">--Please choose an option--</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="other">Other</option>
+      </select><br>
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required><br>
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <script>
+      const form = document.getElementById("myForm");
+      form.addEventListener("submit", function(event) {
+        event.preventDefault();
+        const name = document.getElementById("name");
+        const email = document.getElementById("email");
+        const phone = document.getElementById("phone");
+        const gender = document.getElementById("gender");
+        const password = document.getElementById("password");
+        let isValid = true;
+
+        // Highlight empty fields
+        if (name.value === "") {
+          name.style.backgroundColor = "#ffcccc";
+          isValid = false;
+        } else {
+          name.style.backgroundColor = "";
+        }
+
+        if (email.value === "") {
+          email.style.backgroundColor = "#ffcccc";
+          isValid = false;
+        } else {
+          email.style.backgroundColor = "";
+        }
+
+        if (phone.value === "") {
+          phone.style.backgroundColor = "#ffcccc";
+          isValid = false;
+        } else {
+          phone.style.backgroundColor = "";
+        }
+
+        if (gender.value === "") {
+          gender.style.backgroundColor = "#ffcccc";
+          isValid = false;
+        } else {
+          gender.style.backgroundColor = "";
+        }
+
+        if (password.value === "") {
+          password.style.backgroundColor = "#ffcccc";
+          isValid = false;
+        } else {
+          password.style.backgroundColor = "";
+        }
+
+        // Validate email format
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email.value)) {
+          email.style.backgroundColor = "#ffcccc";
+          isValid = false;
+          alert("Please enter a valid email address.");
+        }
+
+        if (isValid) {
+          alert("Form submitted successfully!");
+          form.reset();
+        }
+      });
+    </script>
+  </body>
+</html>
